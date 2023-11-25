@@ -1,27 +1,31 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css'
-import Button from '@mui/material/Button';
-import SmartDisplay from '@mui/icons-material/SmartDisplay';
 
 import {
   createHashRouter,
   RouterProvider,
 } from "react-router-dom";
 
+import { Home } from './Home';
+import { Setup } from './Setup';
+import { Play } from './Play';
+
 const router = createHashRouter([
   {
     path: "/",
-    element: <div>Home</div>,
+    element: <Home/>,
   },
   {
     path: "/setup",
-    element: <div>Setup</div>,
+    element: <Setup/>,
   },{
     path: "/play",
-    element: <div>Play</div>,
+    element: <Play/>,
   },
 ]);
+
+
 
 function App() {
   return (
