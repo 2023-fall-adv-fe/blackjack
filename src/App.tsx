@@ -4,18 +4,29 @@ import './App.css'
 import Button from '@mui/material/Button';
 import SmartDisplay from '@mui/icons-material/SmartDisplay';
 
+import {
+  createHashRouter,
+  RouterProvider,
+} from "react-router-dom";
+
+const router = createHashRouter([
+  {
+    path: "/",
+    element: <div>Home</div>,
+  },
+  {
+    path: "/setup",
+    element: <div>Setup</div>,
+  },{
+    path: "/play",
+    element: <div>Play</div>,
+  },
+]);
+
 function App() {
   return (
     <div className="App">
-    <Button
-      variant='outlined'
-      size='large'
-      startIcon={
-        <SmartDisplay />
-      }
-    >
-      Play Blackjack
-      </Button>
+     <RouterProvider router={router} />
     </div>
   );
 }
