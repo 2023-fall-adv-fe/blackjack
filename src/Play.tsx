@@ -18,7 +18,7 @@ export const Play = () => {
             <SmartDisplay />
           }
           onClick={
-            () => navigate(-2)
+            () => navigate("/")
           }
         >
           Done

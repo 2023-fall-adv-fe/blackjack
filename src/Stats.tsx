@@ -2,15 +2,14 @@ import Button from '@mui/material/Button';
 import SmartDisplay from '@mui/icons-material/SmartDisplay';
 import { useNavigate } from "react-router-dom";
 
+export const Stats = () => {
 
-export const Home = () => {
-
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
     return (
       <>
         <h3>
-          Blackjack Scoreboard
+          User Stats
         </h3>
         <Button
           variant='outlined'
@@ -19,10 +18,10 @@ export const Home = () => {
             <SmartDisplay />
           }
           onClick={
-            () => navigate('/setup')
+           () => navigate(-1)
           }
         >
-          Play Blackjack
+          Go Back
         </Button>
         <Button
           variant='outlined'
@@ -31,10 +30,10 @@ export const Home = () => {
             <SmartDisplay />
           }
           onClick={
-            () => navigate('/Stats')
+           () => navigate("/Setup")
           }
         >
-          Stats
+          Start New Game
         </Button>
       </>
     );
