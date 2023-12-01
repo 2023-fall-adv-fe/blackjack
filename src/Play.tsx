@@ -1,10 +1,21 @@
 import Button from '@mui/material/Button';
 import SmartDisplay from '@mui/icons-material/SmartDisplay';
 import { useNavigate } from "react-router-dom";
+import { GameResult } from './blackjack-game-results';
+import { FC } from 'react';
 
-export const Play = () => {
+interface PlayProps {
+  addNewGameResult: (r: GameResult) => void;
+};
+
+export const Play: FC<PlayProps>  = ({addNewGameResult}) => {
 
   const navigate = useNavigate();
+
+  const gameOver = (won: boolean) => {
+    addNewGameResult(won);
+    navigate("/");
+  }
 
     return (
       <>
@@ -18,10 +29,22 @@ export const Play = () => {
             <SmartDisplay />
           }
           onClick={
-            () => navigate("/")
+            () => gameOver(true)    
           }
         >
-          Done
+          I won
+        </Button>
+        <Button
+          variant='outlined'
+          size='large'
+          startIcon={
+            <SmartDisplay />
+          }
+          onClick={
+            () => gameOver(false)    
+          }
+        >
+          I lost
         </Button>
       </>
     );
