@@ -12,6 +12,8 @@ import { Setup } from './Setup';
 import { Play } from './Play';
 import { Stats } from './Stats';
 import { GameResult, getWinningPercentageDisplay } from './blackjack-game-results';
+import { AppBar, Box, Toolbar, Typography } from '@mui/material';
+import  TableBarOutlined from '@mui/icons-material/TableBarOutlined'
 
 
 const dummyGameResults: GameResult[] = [
@@ -37,7 +39,9 @@ const App = () => {
   const router = createHashRouter([
     {
       path: "/",
-      element: <Home/>,
+      element: <Home
+      winningPercentageDisplay = {getWinningPercentageDisplay(gameResults)}
+      />,
     },
     {
       path: "/setup",
@@ -60,7 +64,50 @@ const App = () => {
 
   return (
     <div className="App">
-     <RouterProvider router={router} />
+      <Box
+        sx={{
+          flexGrow: 1
+        }}
+      >
+        <AppBar
+          position='static'
+          color='transparent'
+          sx={{
+            overflow: 'hidden'
+            , bgcolor: 'gainsboro'
+            , mb: 3
+          }} 
+        >
+          <Toolbar>
+            <TableBarOutlined
+              color='inherit'
+              sx={{
+                mr: 1
+                , fontSize: '1.5em'
+                , opacity: 0.75
+              }}
+            />
+            <Typography
+              variant='h6'
+              color='black'
+              sx={{
+                opacity: 0.75
+              }}
+            >
+              Blackjack Companion App
+            </Typography>
+          </Toolbar>
+        </AppBar>
+      </Box>
+      <Box
+        sx={{
+          pl: 1
+          , pr: 1
+          , textAlign: 'left'
+        }}
+      >
+        <RouterProvider router={router} />
+      </Box>
     </div>
   );
 }
