@@ -29,10 +29,12 @@ export const Home: FC<HomeProps> = ({winningPercentageDisplay}) => {
               xs: 0
               , md: 3
             }
+            ,  bgcolor: 'black'
             , p: 3
             , width: {
                 xs: '100%'
                 , md: '45%'
+                , color: 'white'
             }
           }}
           onClick={
@@ -51,7 +53,6 @@ export const Home: FC<HomeProps> = ({winningPercentageDisplay}) => {
         <Button
           variant='contained'
           size='large'
-          color='error'
           startIcon={
             <SmartDisplay />
           }
@@ -61,8 +62,8 @@ export const Home: FC<HomeProps> = ({winningPercentageDisplay}) => {
               , md: 3
             }
             , p: 3
-            , opacity: 0.75
-            , color: 'black'
+            , bgcolor: '#f44336'
+            , color: 'white'
             , width: {
               xs: '100%'
               , md: '45%'
@@ -89,7 +90,8 @@ export const Home: FC<HomeProps> = ({winningPercentageDisplay}) => {
             <Paper
               elevation={3}
               sx={{
-                overflow: 'hidden'
+                bgcolor: 'black'
+                , overflow: 'hidden'
               }}
             >
               <Typography
@@ -97,6 +99,7 @@ export const Home: FC<HomeProps> = ({winningPercentageDisplay}) => {
                 fontSize: 20
                 , ml: 2
                 , mt: 3
+
               }}
               color='text.disabled'
               gutterBottom
@@ -109,6 +112,9 @@ export const Home: FC<HomeProps> = ({winningPercentageDisplay}) => {
                     <TableCell>
                       <Typography
                         fontSize={20}
+                        sx={{
+                          color: 'white'
+                        }}
                       >
                         Total Games
                       </Typography>
@@ -116,6 +122,9 @@ export const Home: FC<HomeProps> = ({winningPercentageDisplay}) => {
                     <TableCell>
                       <Typography
                         fontSize={20}
+                        sx={{
+                          color: 'white'
+                        }}
                       >
                         {winningPercentageDisplay.totalGames}
                       </Typography>
@@ -125,6 +134,9 @@ export const Home: FC<HomeProps> = ({winningPercentageDisplay}) => {
                     <TableCell>
                       <Typography
                         fontSize={20}
+                        sx={{
+                          color: 'white'
+                        }}
                       >
                         Winning Percentage
                       </Typography>
@@ -132,11 +144,85 @@ export const Home: FC<HomeProps> = ({winningPercentageDisplay}) => {
                     <TableCell>
                       <Typography
                         fontSize={20}
+                        sx={{
+                          color: 'white'
+                        }}
                       >
                         {winningPercentageDisplay.winningPercentage}
                       </Typography>
                     </TableCell>
                   </TableRow>
+
+                  <TableRow>
+                    <TableCell>
+                      <Typography
+                        fontSize={20}
+                        sx={{
+                          color: 'white'
+                        }}
+                      >
+                        Last Played
+                      </Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography
+                        fontSize={20}
+                        sx={{
+                          color: 'white'
+                        }}
+                      >
+                        3d ago
+                      </Typography>
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Typography
+                        fontSize={20}
+                        sx={{
+                          color: 'white'
+                        }}
+                      >
+                        Longest Game
+                      </Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography
+                        fontSize={20}
+                        sx={{
+                          color: 'white'
+                        }}
+                      >
+                        13m 17s
+                      </Typography>
+                    </TableCell>
+                  </TableRow>
+
+                  <TableRow>
+                    <TableCell>
+                      <Typography
+                        fontSize={20}
+                        sx={{
+                          color: 'white'
+                        }}
+                      >
+                        Shortest Game
+                      </Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography
+                        fontSize={20}
+                        sx={{
+                          color: 'white'
+                        }}
+                      >
+                        5m 42s
+                      </Typography>
+                    </TableCell>
+                  </TableRow>
+                  
+
+
                 </TableBody>
               </Table>
             </Paper>

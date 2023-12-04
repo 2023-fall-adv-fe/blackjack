@@ -74,8 +74,9 @@ const App = () => {
           color='transparent'
           sx={{
             overflow: 'hidden'
-            , bgcolor: 'whitesmoke'
+            , bgcolor: 'black'
             , mb: 3
+            , color: 'white'
           }} 
         >
           <Toolbar>
@@ -85,6 +86,7 @@ const App = () => {
                 mr: 1
                 , fontSize: '1.5em'
                 , opacity: 0.75
+                , color: 'white'
               }}
             />
             <Typography
@@ -92,6 +94,7 @@ const App = () => {
               color='black'
               sx={{
                 opacity: 0.75
+                , color: 'white'
               }}
             >
               Blackjack Companion App
