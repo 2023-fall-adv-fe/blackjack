@@ -74,7 +74,7 @@ const App = () => {
           color='transparent'
           sx={{
             overflow: 'hidden'
-            , bgcolor: 'gainsboro'
+            , bgcolor: 'whitesmoke'
             , mb: 3
           }} 
         >
