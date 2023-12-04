@@ -53,6 +53,7 @@ export const Home: FC<HomeProps> = ({winningPercentageDisplay}) => {
         <Button
           variant='contained'
           size='large'
+          color='inherit'
           startIcon={
             <SmartDisplay />
           }
