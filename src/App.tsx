@@ -11,7 +11,12 @@ import { Home } from './Home';
 import { Setup } from './Setup';
 import { Play } from './Play';
 import { Stats } from './Stats';
-import { GameResult, getWinningPercentageDisplay } from './blackjack-game-results';
+import { 
+  GameResult
+  , getWinningPercentageDisplay
+  , GeneralGameTimeFactsDisplay,
+  getGeneralGameTimeFacts
+} from './blackjack-game-results';
 import { AppBar, Box, Toolbar, Typography } from '@mui/material';
 import  TableBarOutlined from '@mui/icons-material/TableBarOutlined'
 
@@ -50,6 +55,7 @@ const App = () => {
       path: "/",
       element: <Home
       winningPercentageDisplay = {getWinningPercentageDisplay(gameResults)}
+      generalGameTimeFacts={getGeneralGameTimeFacts(gameResults, Date.now())}
       />,
     },
     {

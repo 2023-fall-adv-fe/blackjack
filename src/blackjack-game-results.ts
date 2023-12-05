@@ -1,4 +1,4 @@
-import { durationFormatter } from 'human-Readable';
+import { durationFormatter } from 'human-readable';
 
 const format = durationFormatter<string>();
 
@@ -42,7 +42,7 @@ export interface GeneralGameTimeFactsDisplay {
     longestGame: string;
 };
 
-const getGeneralGameTimeFacts = (
+export const getGeneralGameTimeFacts = (
     results: GameResult[]
     , fromDateMilliseconds: number 
 ): GeneralGameTimeFactsDisplay => {

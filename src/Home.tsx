@@ -2,16 +2,20 @@ import Button from '@mui/material/Button';
 import SmartDisplay from '@mui/icons-material/SmartDisplay';
 import { useNavigate } from "react-router-dom";
 import { Typography, Paper, Table, TableBody, TableRow, TableCell } from '@mui/material';
-import { WinningPercentageDisplay } from './blackjack-game-results';
+import { GeneralGameTimeFactsDisplay, WinningPercentageDisplay } from './blackjack-game-results';
 import { FC } from 'react';
 import Grid from '@mui/material/Unstable_Grid2';
 
 interface HomeProps {
   winningPercentageDisplay: WinningPercentageDisplay
+  , generalGameTimeFacts: GeneralGameTimeFactsDisplay
 }
 
 
-export const Home: FC<HomeProps> = ({winningPercentageDisplay}) => {
+export const Home: FC<HomeProps> = ({
+    winningPercentageDisplay
+    , generalGameTimeFacts
+  }) => {
 
     const navigate = useNavigate();
 
@@ -172,7 +176,7 @@ export const Home: FC<HomeProps> = ({winningPercentageDisplay}) => {
                           color: 'white'
                         }}
                       >
-                        3d ago
+                        {generalGameTimeFacts.lastPlayed} ago
                       </Typography>
                     </TableCell>
                   </TableRow>
@@ -194,7 +198,7 @@ export const Home: FC<HomeProps> = ({winningPercentageDisplay}) => {
                           color: 'white'
                         }}
                       >
-                        13m 17s
+                        {generalGameTimeFacts.longestGame}
                       </Typography>
                     </TableCell>
                   </TableRow>
@@ -217,7 +221,7 @@ export const Home: FC<HomeProps> = ({winningPercentageDisplay}) => {
                           color: 'white'
                         }}
                       >
-                        5m 42s
+                        {generalGameTimeFacts.shortestGame}
                       </Typography>
                     </TableCell>
                   </TableRow>
