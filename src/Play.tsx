@@ -2,7 +2,7 @@ import Button from '@mui/material/Button';
 import SmartDisplay from '@mui/icons-material/SmartDisplay';
 import { useNavigate } from "react-router-dom";
 import { GameResult } from './blackjack-game-results';
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 interface PlayProps {
   addNewGameResult: (r: GameResult) => void;
@@ -14,7 +14,11 @@ export const Play: FC<PlayProps>  = ({
   , setTitle
 }) => {
 
-  setTitle("Play Blackjack & Collect Data")
+  useEffect(
+    () => setTitle("Play Blackjack and Collect Data")
+    , []
+  );
+  
   const navigate = useNavigate();
 
   const [startTimestamp, _] = useState(new Date().toISOString());

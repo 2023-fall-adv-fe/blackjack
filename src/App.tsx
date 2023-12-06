@@ -16,7 +16,6 @@ import { Play } from './Play';
 import { Stats } from './Stats';
 import { 
   GameResult
-  , getWinningPercentageDisplay
   , GeneralGameTimeFactsDisplay,
   getGeneralGameTimeFacts
 } from './blackjack-game-results';
@@ -58,7 +57,6 @@ const App = () => {
     {
       path: "/",
       element: <Home
-      winningPercentageDisplay = {getWinningPercentageDisplay(gameResults)}
       generalGameTimeFacts={getGeneralGameTimeFacts(gameResults, Date.now())}
       setTitle={setTitle}
       />,
@@ -79,7 +77,7 @@ const App = () => {
     },{
       path: "/Stats",
       element: <Stats
-        winningPercentageDisplay = {getWinningPercentageDisplay(gameResults)}
+      generalGameTimeFacts={getGeneralGameTimeFacts(gameResults, Date.now())}
         setTitle={setTitle}
       />,
     },

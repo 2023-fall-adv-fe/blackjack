@@ -1,30 +1,33 @@
 import Button from '@mui/material/Button';
 import SmartDisplay from '@mui/icons-material/SmartDisplay';
 import { useNavigate } from "react-router-dom";
-import { WinningPercentageDisplay } from './blackjack-game-results';
-import { FC } from 'react';
+import { GeneralGameTimeFactsDisplay } from './blackjack-game-results';
+import { FC, useEffect } from 'react';
 
 interface StatsProps {
-  winningPercentageDisplay: WinningPercentageDisplay;
+  generalGameTimeFacts: GeneralGameTimeFactsDisplay
   setTitle: (t: string) => void;
 }
 
 export const Stats: FC<StatsProps> = ({
-  winningPercentageDisplay
+  generalGameTimeFacts
   , setTitle
 }) => {
 
   const navigate = useNavigate();
 
-    setTitle("Blackjack Stats");
+  useEffect(
+    () => setTitle("Blackjack Stats")
+    , []
+  );
 
     return (
       <>
         <h4>
-          {`Total: ${winningPercentageDisplay.totalGames}`}
+          {`Total: ${generalGameTimeFacts.totalGames}`}
         </h4>
         <h4>
-          {`Winning: ${winningPercentageDisplay.winningPercentage}`}
+          
         </h4>
         <Button
           variant='outlined'

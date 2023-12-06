@@ -1,7 +1,7 @@
 import Button from '@mui/material/Button';
 import SmartDisplay from '@mui/icons-material/SmartDisplay';
 import { useNavigate } from "react-router-dom";
-import { FC, useState } from 'react';
+import { FC, useState, useEffect } from 'react';
 
 interface SetupProps {
   num: number;
@@ -17,7 +17,10 @@ export const Setup: FC<SetupProps> = ({
 
   const navigate = useNavigate();
 
-    setTitle("Game Setup");
+     useEffect(
+    () => setTitle("Game Setup")
+    , []
+  );
 
     //let num = 1;
     //const [num, setNum] = useState(1);

@@ -11,32 +11,14 @@ export type GameResult = {
     end: string;
 };
 
-export interface WinningPercentageDisplay {
-    totalGames: number;
-    winningPercentage: string; // Formatted to two decimal places with a % sign
-};
 
-export const getWinningPercentageDisplay = (results: GameResult[]): WinningPercentageDisplay => {
 
-    const wins = results.filter(x => x.won).length;
-    const totalGames = results.length;
-    const wp = totalGames > 0
-        ? (wins / totalGames) * 100
-        : 0
-    ;
 
-    // console.log(wins, results.length);
-
-    return {
-        // totalGames: totalGames
-        totalGames
-        , winningPercentage: `${wp.toFixed(2)}%`
-    };
-};
 
 
 
 export interface GeneralGameTimeFactsDisplay {
+    totalGames: number;
     lastPlayed: string; // milliseconds for now, but "display" implies human-readable...
     shortestGame: string;
     longestGame: string;
@@ -58,7 +40,8 @@ export const getGeneralGameTimeFacts = (
     ;
 
     return {
-        lastPlayed: justDaysFormat(fromDateMilliseconds - Math.max(...gameEndDatesInMilliseconds))
+        totalGames: results.length
+        , lastPlayed: justDaysFormat(fromDateMilliseconds - Math.max(...gameEndDatesInMilliseconds))
         , shortestGame: format(Math.min(...gameDurationsInMilliseconds))
         , longestGame: format(Math.max(...gameDurationsInMilliseconds))
     };

@@ -2,27 +2,30 @@ import Button from '@mui/material/Button';
 import SmartDisplay from '@mui/icons-material/SmartDisplay';
 import { useNavigate } from "react-router-dom";
 import { Typography, Paper, Table, TableBody, TableRow, TableCell } from '@mui/material';
-import { GeneralGameTimeFactsDisplay, WinningPercentageDisplay } from './blackjack-game-results';
-import { FC } from 'react';
+import { GeneralGameTimeFactsDisplay } from './blackjack-game-results';
+import { FC, useEffect, useState } from 'react';
 import Grid from '@mui/material/Unstable_Grid2';
 
 export const appTitle = "Blackjack Companion App"
 interface HomeProps {
-  winningPercentageDisplay: WinningPercentageDisplay;
-  generalGameTimeFacts: GeneralGameTimeFactsDisplay;
+  generalGameTimeFacts: GeneralGameTimeFactsDisplay
   setTitle: (t: string) => void;
 }
 
 
 export const Home: FC<HomeProps> = ({
-    winningPercentageDisplay
-    , generalGameTimeFacts
+    generalGameTimeFacts
     , setTitle
   }) => {
 
     const navigate = useNavigate();
 
-    setTitle(appTitle);
+    useEffect(
+
+      () => setTitle("Blackjack Companion App")
+      , []
+
+    );
 
     return (
       <>
@@ -136,32 +139,11 @@ export const Home: FC<HomeProps> = ({
                           color: 'white'
                         }}
                       >
-                        {winningPercentageDisplay.totalGames}
+                        {generalGameTimeFacts.totalGames}
                       </Typography>
                     </TableCell>
                   </TableRow>
-                  <TableRow>
-                    <TableCell>
-                      <Typography
-                        fontSize={20}
-                        sx={{
-                          color: 'white'
-                        }}
-                      >
-                        Winning Percentage
-                      </Typography>
-                    </TableCell>
-                    <TableCell>
-                      <Typography
-                        fontSize={20}
-                        sx={{
-                          color: 'white'
-                        }}
-                      >
-                        {winningPercentageDisplay.winningPercentage}
-                      </Typography>
-                    </TableCell>
-                  </TableRow>
+                  
 
                   <TableRow>
                     <TableCell>
