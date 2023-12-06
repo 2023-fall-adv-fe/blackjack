@@ -6,20 +6,24 @@ import { FC, useState } from 'react';
 interface SetupProps {
   num: number;
   setNum: any;
+  setTitle: (t: string) => void;
 }
 
-export const Setup: FC<SetupProps> = ({num, setNum}) => {
+export const Setup: FC<SetupProps> = ({
+    num
+    , setNum
+    , setTitle 
+  }) => {
 
   const navigate = useNavigate();
+
+    setTitle("Game Setup");
 
     //let num = 1;
     //const [num, setNum] = useState(1);
 
     return (
       <>
-        <h3>
-          Setup a game of blackjack({num})
-        </h3>
         <Button
           variant='outlined'
           size='large'

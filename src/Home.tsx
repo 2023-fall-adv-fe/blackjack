@@ -6,18 +6,23 @@ import { GeneralGameTimeFactsDisplay, WinningPercentageDisplay } from './blackja
 import { FC } from 'react';
 import Grid from '@mui/material/Unstable_Grid2';
 
+export const appTitle = "Blackjack Companion App"
 interface HomeProps {
-  winningPercentageDisplay: WinningPercentageDisplay
-  , generalGameTimeFacts: GeneralGameTimeFactsDisplay
+  winningPercentageDisplay: WinningPercentageDisplay;
+  generalGameTimeFacts: GeneralGameTimeFactsDisplay;
+  setTitle: (t: string) => void;
 }
 
 
 export const Home: FC<HomeProps> = ({
     winningPercentageDisplay
     , generalGameTimeFacts
+    , setTitle
   }) => {
 
     const navigate = useNavigate();
+
+    setTitle(appTitle);
 
     return (
       <>

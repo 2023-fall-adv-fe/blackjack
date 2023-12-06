@@ -7,7 +7,10 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
-import { Home } from './Home';
+import { 
+  Home
+  , appTitle 
+} from './Home';
 import { Setup } from './Setup';
 import { Play } from './Play';
 import { Stats } from './Stats';
@@ -42,6 +45,7 @@ const App = () => {
 
   const [num, setNum] = useState(1);
   const [gameResults, setGameResults] = useState<GameResult[]>(dummyGameResults);
+  const [title, setTitle] = useState<string>(appTitle)
 
   const addNewGameResult = (newGameResult: GameResult) => setGameResults(
     [
@@ -56,6 +60,7 @@ const App = () => {
       element: <Home
       winningPercentageDisplay = {getWinningPercentageDisplay(gameResults)}
       generalGameTimeFacts={getGeneralGameTimeFacts(gameResults, Date.now())}
+      setTitle={setTitle}
       />,
     },
     {
@@ -63,16 +68,19 @@ const App = () => {
       element: <Setup
         num={num}
         setNum={setNum}
+        setTitle={setTitle}
       />,
     },{
       path: "/play",
       element: <Play
         addNewGameResult={addNewGameResult}
+        setTitle={setTitle}
       />,
     },{
       path: "/Stats",
       element: <Stats
         winningPercentageDisplay = {getWinningPercentageDisplay(gameResults)}
+        setTitle={setTitle}
       />,
     },
   ]);
@@ -95,15 +103,20 @@ const App = () => {
           }} 
         >
           <Toolbar>
-            <TableBarOutlined
+            {
+              title == appTitle &&
+              <TableBarOutlined
               color='inherit'
               sx={{
                 mr: 1
                 , fontSize: '1.5em'
                 , opacity: 0.75
                 , color: 'white'
+                //, display: title == appTitle ? 'inherit' : 'none'
               }}
             />
+            }
+            
             <Typography
               variant='h6'
               color='black'
@@ -112,7 +125,7 @@ const App = () => {
                 , color: 'white'
               }}
             >
-              Blackjack Companion App
+              {title}
             </Typography>
           </Toolbar>
         </AppBar>

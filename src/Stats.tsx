@@ -5,18 +5,21 @@ import { WinningPercentageDisplay } from './blackjack-game-results';
 import { FC } from 'react';
 
 interface StatsProps {
-  winningPercentageDisplay: WinningPercentageDisplay
+  winningPercentageDisplay: WinningPercentageDisplay;
+  setTitle: (t: string) => void;
 }
 
-export const Stats: FC<StatsProps> = ({winningPercentageDisplay}) => {
+export const Stats: FC<StatsProps> = ({
+  winningPercentageDisplay
+  , setTitle
+}) => {
 
   const navigate = useNavigate();
 
+    setTitle("Blackjack Stats");
+
     return (
       <>
-        <h3>
-          User Stats
-        </h3>
         <h4>
           {`Total: ${winningPercentageDisplay.totalGames}`}
         </h4>

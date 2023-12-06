@@ -6,10 +6,15 @@ import { FC, useState } from 'react';
 
 interface PlayProps {
   addNewGameResult: (r: GameResult) => void;
+  setTitle: (t: string) => void;
 };
 
-export const Play: FC<PlayProps>  = ({addNewGameResult}) => {
+export const Play: FC<PlayProps>  = ({
+  addNewGameResult
+  , setTitle
+}) => {
 
+  setTitle("Play Blackjack & Collect Data")
   const navigate = useNavigate();
 
   const [startTimestamp, _] = useState(new Date().toISOString());
@@ -25,9 +30,6 @@ export const Play: FC<PlayProps>  = ({addNewGameResult}) => {
 
     return (
       <>
-        <h3>
-          Play &amp; Collect Data
-        </h3>
         <Button
           variant='outlined'
           size='large'
