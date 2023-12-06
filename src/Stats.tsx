@@ -1,11 +1,11 @@
 import Button from '@mui/material/Button';
 import SmartDisplay from '@mui/icons-material/SmartDisplay';
 import { useNavigate } from "react-router-dom";
-import { GeneralGameTimeFactsDisplay } from './blackjack-game-results';
+import { GeneralFactsDisplay } from './blackjack-game-results';
 import { FC, useEffect } from 'react';
 
 interface StatsProps {
-  generalGameTimeFacts: GeneralGameTimeFactsDisplay
+  generalGameTimeFacts: GeneralFactsDisplay
   setTitle: (t: string) => void;
 }
 

@@ -2,19 +2,19 @@ import Button from '@mui/material/Button';
 import SmartDisplay from '@mui/icons-material/SmartDisplay';
 import { useNavigate } from "react-router-dom";
 import { Typography, Paper, Table, TableBody, TableRow, TableCell } from '@mui/material';
-import { GeneralGameTimeFactsDisplay } from './blackjack-game-results';
+import { GeneralFactsDisplay as GeneralFactsDisplay } from './blackjack-game-results';
 import { FC, useEffect, useState } from 'react';
 import Grid from '@mui/material/Unstable_Grid2';
 
 export const appTitle = "Blackjack Companion App"
 interface HomeProps {
-  generalGameTimeFacts: GeneralGameTimeFactsDisplay
+  generalGameFacts: GeneralFactsDisplay
   setTitle: (t: string) => void;
 }
 
 
 export const Home: FC<HomeProps> = ({
-    generalGameTimeFacts
+    generalGameFacts: generalGameFacts
     , setTitle
   }) => {
 
@@ -139,7 +139,7 @@ export const Home: FC<HomeProps> = ({
                           color: 'white'
                         }}
                       >
-                        {generalGameTimeFacts.totalGames}
+                        {generalGameFacts.totalGames}
                       </Typography>
                     </TableCell>
                   </TableRow>
@@ -163,7 +163,7 @@ export const Home: FC<HomeProps> = ({
                           color: 'white'
                         }}
                       >
-                        {generalGameTimeFacts.lastPlayed} ago
+                        {generalGameFacts.lastPlayed} ago
                       </Typography>
                     </TableCell>
                   </TableRow>
@@ -185,7 +185,7 @@ export const Home: FC<HomeProps> = ({
                           color: 'white'
                         }}
                       >
-                        {generalGameTimeFacts.longestGame}
+                        {generalGameFacts.longestGame}
                       </Typography>
                     </TableCell>
                   </TableRow>
@@ -208,7 +208,7 @@ export const Home: FC<HomeProps> = ({
                           color: 'white'
                         }}
                       >
-                        {generalGameTimeFacts.shortestGame}
+                        {generalGameFacts.shortestGame}
                       </Typography>
                     </TableCell>
                   </TableRow>

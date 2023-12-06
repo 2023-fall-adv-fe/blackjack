@@ -16,7 +16,7 @@ import { Play } from './Play';
 import { Stats } from './Stats';
 import { 
   GameResult
-  , GeneralGameTimeFactsDisplay,
+  , GeneralFactsDisplay,
   getGeneralGameTimeFacts
 } from './blackjack-game-results';
 import { AppBar, Box, Toolbar, Typography } from '@mui/material';
@@ -57,7 +57,7 @@ const App = () => {
     {
       path: "/",
       element: <Home
-      generalGameTimeFacts={getGeneralGameTimeFacts(gameResults, Date.now())}
+      generalGameFacts={getGeneralGameTimeFacts(gameResults, Date.now())}
       setTitle={setTitle}
       />,
     },

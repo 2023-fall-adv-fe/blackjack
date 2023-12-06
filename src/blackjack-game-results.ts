@@ -17,7 +17,7 @@ export type GameResult = {
 
 
 
-export interface GeneralGameTimeFactsDisplay {
+export interface GeneralFactsDisplay {
     totalGames: number;
     lastPlayed: string; // milliseconds for now, but "display" implies human-readable...
     shortestGame: string;
@@ -27,7 +27,7 @@ export interface GeneralGameTimeFactsDisplay {
 export const getGeneralGameTimeFacts = (
     results: GameResult[]
     , fromDateMilliseconds: number 
-): GeneralGameTimeFactsDisplay => {
+): GeneralFactsDisplay => {
 
     const gameEndDatesInMilliseconds = results
         .map(x => Date.parse(x.end))
