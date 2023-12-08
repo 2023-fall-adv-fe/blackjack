@@ -3,15 +3,18 @@ import SmartDisplay from '@mui/icons-material/SmartDisplay';
 import { useNavigate } from "react-router-dom";
 import { GameResult } from './blackjack-game-results';
 import { FC, useEffect, useState } from 'react';
+import { Box } from '@mui/material';
 
 interface PlayProps {
   addNewGameResult: (r: GameResult) => void;
   setTitle: (t: string) => void;
+  chosenPlayers: string[];
 };
 
 export const Play: FC<PlayProps>  = ({
   addNewGameResult
   , setTitle
+  , chosenPlayers
 }) => {
 
   useEffect(
@@ -23,10 +26,10 @@ export const Play: FC<PlayProps>  = ({
 
   const [startTimestamp, _] = useState(new Date().toISOString());
 
-  const gameOver = (won: boolean) => {
+  const gameOver = (winner: string) => {
     addNewGameResult({
-      winner: "Moe"
-      , players: ["Larry", "Curly", "Moe"]
+      winner: winner
+      , players: chosenPlayers
 
       , start: startTimestamp
       , end: new Date().toISOString()
@@ -35,57 +38,39 @@ export const Play: FC<PlayProps>  = ({
   }
 
     return (
-      <>
-        <Button
-          variant='outlined'
-          size='large'
-          startIcon={
-            <SmartDisplay />
-          }
-          onClick={
-            () => gameOver(true)    
-          }
-          sx={{
-            bgcolor: 'green'
-            , color: "white"
-            , p: 3
-            , width: {
-                xs: '100%'
-                , md: '45%'
+      <Box
+        sx={{
+          mt: 2
+          , display: "flex"
+          , flexDirection: "column"
+          , gap: 2
+        }}
+      >
+      {
+        chosenPlayers.map(x => (
+          <Button
+            key={x}
+            variant='outlined'
+            size='large'
+            startIcon={
+              <SmartDisplay />
             }
-            , m: {
-              xs: 0
-              , md: 3
+            onClick={
+              () => gameOver(x)    
             }
-          }}
-        >
-          I won
-        </Button>
-        <Button
-          variant='outlined'
-          size='large'
-          startIcon={
-            <SmartDisplay />
-          }
-          onClick={
-            () => gameOver(false)    
-          }
-          sx={{
-            bgcolor: '#f44336'
-            , color: "white"
-            , p: 3
-            , width: {
-                xs: '100%'
-                , md: '45%'
-            }
-            , m: {
-              xs: 0
-              , md: 3
-            }
-          }}
-        >
-          I lost
-        </Button>
-      </>
+            sx={{
+              bgcolor: 'green'
+              , color: "white"
+              , p: 3
+              , width: '100%'
+            }}
+          >
+            {x} won
+          </Button>
+        ))
+      }
+        
+      
+      </Box>
     );
   };
