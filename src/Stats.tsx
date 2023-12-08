@@ -95,7 +95,9 @@ export const Stats: FC<StatsProps> = ({
                 <TableBody>
                   {
                     leaderboard.map(x => (
-                      <TableRow>
+                      <TableRow
+                        key={x.name}
+                      >
                         <TableCell
                          sx={{
                           color: "white"
