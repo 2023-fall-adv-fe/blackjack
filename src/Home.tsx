@@ -43,10 +43,10 @@ export const Home: FC<HomeProps> = ({
             }
             ,  bgcolor: 'black'
             , p: 3
+            , color: 'white'
             , width: {
                 xs: '100%'
                 , md: '45%'
-                , color: 'white'
             }
           }}
           onClick={
