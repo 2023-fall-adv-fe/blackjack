@@ -16,9 +16,10 @@ import { Play } from './Play';
 import { Stats } from './Stats';
 import { 
   GameResult
-  , GeneralFactsDisplay,
-  getGeneralGameTimeFacts,
-  getLeaderboardData
+  , GeneralFactsDisplay
+  , getGeneralGameTimeFacts
+  , getLeaderboardData
+  , getPreviousPlayers
 } from './blackjack-game-results';
 import { AppBar, Box, Toolbar, Typography } from '@mui/material';
 import  TableBarOutlined from '@mui/icons-material/TableBarOutlined'
@@ -89,6 +90,7 @@ const App = () => {
         num={num}
         setNum={setNum}
         setTitle={setTitle}
+        previousPlayers={ getPreviousPlayers(gameResults) }
       />,
     },{
       path: "/play",
