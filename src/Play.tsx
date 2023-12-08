@@ -45,6 +45,19 @@ export const Play: FC<PlayProps>  = ({
           onClick={
             () => gameOver(true)    
           }
+          sx={{
+            bgcolor: 'green'
+            , color: "white"
+            , p: 3
+            , width: {
+                xs: '100%'
+                , md: '45%'
+            }
+            , m: {
+              xs: 0
+              , md: 3
+            }
+          }}
         >
           I won
         </Button>
@@ -57,6 +70,19 @@ export const Play: FC<PlayProps>  = ({
           onClick={
             () => gameOver(false)    
           }
+          sx={{
+            bgcolor: '#f44336'
+            , color: "white"
+            , p: 3
+            , width: {
+                xs: '100%'
+                , md: '45%'
+            }
+            , m: {
+              xs: 0
+              , md: 3
+            }
+          }}
         >
           I lost
         </Button>

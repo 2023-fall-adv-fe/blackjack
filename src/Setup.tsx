@@ -82,6 +82,10 @@ export const Setup: FC<SetupProps> = ({
                 xs: '100%'
                 , md: '45%'
             }
+            , m: {
+              xs: 0
+              , md: 3
+            }
           }}
         >
           <Typography
@@ -103,6 +107,10 @@ export const Setup: FC<SetupProps> = ({
             , width: {
                 xs: '100%'
                 , md: '45%'
+            }
+            , m: {
+              xs: 0
+              , md: 3
             }
           }}
           onClick={
