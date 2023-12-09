@@ -1,9 +1,10 @@
 import Button from '@mui/material/Button';
 import SmartDisplay from '@mui/icons-material/SmartDisplay';
 import { useNavigate } from "react-router-dom";
-import { GameResult } from './blackjack-game-results';
+import { GameResult, Player } from './blackjack-game-results';
 import { FC, useEffect, useState } from 'react';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
+import { Add, Remove } from '@mui/icons-material';
 
 interface PlayProps {
   addNewGameResult: (r: GameResult) => void;
@@ -17,6 +18,9 @@ export const Play: FC<PlayProps>  = ({
   , chosenPlayers
 }) => {
 
+  const [handNumber, setHandNumber] = useState(1)
+  const [] = useState<Player[]>();
+
   useEffect(
     () => setTitle("Play Blackjack and Collect Data")
     , []
@@ -29,7 +33,11 @@ export const Play: FC<PlayProps>  = ({
   const gameOver = (winner: string) => {
     addNewGameResult({
       winner: winner
-      , players: chosenPlayers
+      , players: chosenPlayers.map( x => ({
+          name: x
+          , hands: []
+
+      }))
 
       , start: startTimestamp
       , end: new Date().toISOString()
@@ -46,6 +54,40 @@ export const Play: FC<PlayProps>  = ({
           , gap: 2
         }}
       >
+        <Box
+          sx={{
+            display: "flex"
+            , flexDirection: "row"
+            , gap: 2
+            , alignItems: "center"
+          }}
+        >
+          <Button
+            variant='contained'
+            onClick={
+              () => setHandNumber(
+                handNumber > 1 
+                ? handNumber -1
+                : handNumber
+              )
+            }
+          >
+            <Remove />
+          </Button>
+          <Typography
+            fontSize={20}
+          >
+            Hand: {handNumber}
+          </Typography>
+          <Button
+            variant='contained'
+            onClick={
+              () => setHandNumber(handNumber + 1)
+            }
+          >
+            <Add />
+          </Button>
+        </Box>
       {
         chosenPlayers.map(x => (
           <Button

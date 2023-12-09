@@ -31,32 +31,65 @@ import  TableBarOutlined from '@mui/icons-material/TableBarOutlined'
 const dummyGameResults: GameResult[] = [
   {
       winner: "Tom"
-      ,players: ["Tom", "taylor"]
+      , players: [
+        {
+          name: "Tom"
+          , hands: [
+            {num: 1, status: "Won"}
+            , {num: 2, status: "Blackjack"}
+          ]
+        }
+        , {
+          name: "Larry"
+          , hands: [
+            { num: 1, status: "Lost"}
+            , { num: 2, status: "Won"}
+          ]
+        }
+      ]
 
       , start: "2023-10-01T17:40:46.333Z"
       , end: "2023-10-01T17:53:27.123Z"
   }
   , {
       winner: "Troy"
-      , players: ["Troy", "Jonah", "Sheldon", "Tom"]
-      , start: "2023-10-09T17:55:46.333Z"
-      , end: "2023-10-09T18:00:27.123Z"
-  }
-  , {
-      winner: "Troy"
-      , players: ["Troy", "Larry"]
+      , players: [
+        {
+          name: "Troy"
+          , hands: [
+            { num: 1, status: "Blackjack"}
+            , { num: 2, status: "Lost"}
+          ]
+        }
+        , {
+          name: "Larry"
+          , hands: [
+            { num: 1, status: "Lost"}
+            , { num: 2, status: "Won"}
+          ]
+        }
+      ]
       , start: "2023-10-09T17:55:46.333Z"
       , end: "2023-10-09T18:00:27.123Z"
   }
   , {
       winner: "Larry"
-      , players: ["Troy", "Larry"]
-      , start: "2023-10-09T17:55:46.333Z"
-      , end: "2023-10-09T18:00:27.123Z"
-  }
-  , {
-      winner: "Larry"
-      , players: ["Troy", "Larry"]
+      , players: [
+        {
+          name: "Jonah"
+          , hands: [
+            { num: 1, status: "Lost"}
+            , {num: 2, status: "Lost"}
+          ]
+        }
+        , {
+          name: "Larry"
+          , hands: [
+            { num: 1, status: "Won"}
+            , {num: 2, status: "Blackjack"}
+          ]
+        }
+      ]
       , start: "2023-10-09T17:55:46.333Z"
       , end: "2023-10-09T18:00:27.123Z"
   }

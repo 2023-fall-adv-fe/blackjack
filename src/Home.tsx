@@ -98,7 +98,7 @@ export const Home: FC<HomeProps> = ({
         >
           <Grid
             xs={12}
-            md={6}
+            md={12}
           >
             <Paper
               elevation={3}

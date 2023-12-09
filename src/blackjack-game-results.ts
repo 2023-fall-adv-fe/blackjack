@@ -9,11 +9,20 @@ export type GameResult = {
     
     // won: boolean;
     winner: string;
-    players: string[];
+    players: Player[];
     
     start: string;
     end: string;
 };
+type HandStatus = "Won" | "Lost" | "Blackjack";
+type Hand = {
+    num: number;
+    status: HandStatus;
+}
+export type Player = {
+    name: string;
+    hands: Hand[];
+}
 
 export interface GeneralFactsDisplay {
     totalGames: number;
@@ -54,9 +63,11 @@ export const getGeneralGameTimeFacts = (
 
 
 
-export const getPreviousPlayers = (results: GameResult[]) => {
+export const getPreviousPlayers = (results: GameResult[]): string[] => {
 
-    const previousPlayers = results.flatMap(x => x.players);
+    const previousPlayers = results
+    .flatMap(x => x.players)
+    .map(x => x.name)
 
     return [
         ...new Set(previousPlayers)
@@ -77,7 +88,7 @@ const getPlayerRecord = (
     
     const gamesPlayerPlayed = results.filter(
         x => x.players.some(
-            y => y == player
+            y => y.name == player
         )
     ).length;
 
