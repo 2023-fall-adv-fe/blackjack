@@ -8,13 +8,12 @@ const justDaysFormat = durationFormatter<string> ({
 export type GameResult = {
     
     // won: boolean;
-    winner: string;
     players: Player[];
     
     start: string;
     end: string;
 };
-type HandStatus = "Won" | "Lost" | "Blackjack";
+export type HandStatus = "Won" | "Lost" | "Blackjack";
 type Hand = {
     num: number;
     status: HandStatus;
@@ -35,6 +34,7 @@ export interface LeaderboardEntry  {
     wins: number;
     losses: number;
     avg: number;
+    blackJacks: number;
     name: string
 };
 
@@ -84,7 +84,28 @@ const getPlayerRecord = (
     , results: GameResult[]
 ): LeaderboardEntry => {
 
-    const wins = results.filter(x => x.winner == player).length;
+    const playerResults = results
+    .flatMap((result) =>
+      result.players.filter((playerInfo) => playerInfo.name === player)
+    )
+    .flatMap(playerInfo => playerInfo.hands);
+
+    const wins = playerResults.filter(
+        (hand) => hand.status === 'Won' || hand.status === 'Blackjack'
+      ).length;
+    const totalHandsPlayed = playerResults.length;
+    const losses = totalHandsPlayed - wins;
+    const blackJacks = playerResults.filter(
+        (hand) => hand.status === 'Blackjack'
+      ).length;
+
+  return {
+    wins: wins,
+    losses: losses,
+    avg: wins / totalHandsPlayed,
+    blackJacks: blackJacks,
+    name: player,
+    /*const wins = results.filter(x => x.winner == player).length;
     
     const gamesPlayerPlayed = results.filter(
         x => x.players.some(
@@ -99,8 +120,9 @@ const getPlayerRecord = (
         , losses: losses
         , avg: wins / gamesPlayerPlayed
         , name: player
-    };
+    };*/
 };
+}
 
 
 export const getLeaderboardData = (results: Array<GameResult>): LeaderboardEntry[] => {

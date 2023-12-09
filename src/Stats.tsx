@@ -88,6 +88,13 @@ export const Stats: FC<StatsProps> = ({
                       color: "white"
                     }}
                     >
+                      BLACKJACKS
+                    </TableCell>
+                    <TableCell
+                     sx={{
+                      color: "white"
+                    }}
+                    >
                       PLAYER
                     </TableCell>
                   </TableRow>
@@ -118,6 +125,13 @@ export const Stats: FC<StatsProps> = ({
                         }}
                         >
                           {x.avg.toFixed(3)}
+                        </TableCell>
+                        <TableCell
+                         sx={{
+                          color: "white"
+                        }}
+                        >
+                          {x.blackJacks}
                         </TableCell>
                         <TableCell
                          sx={{

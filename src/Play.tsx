@@ -1,7 +1,7 @@
 import Button from '@mui/material/Button';
 import SmartDisplay from '@mui/icons-material/SmartDisplay';
 import { useNavigate } from "react-router-dom";
-import { GameResult, Player } from './blackjack-game-results';
+import { GameResult, Player, HandStatus } from './blackjack-game-results';
 import { FC, useEffect, useState } from 'react';
 import { Box, Typography } from '@mui/material';
 import { Add, Remove } from '@mui/icons-material';
@@ -18,8 +18,15 @@ export const Play: FC<PlayProps>  = ({
   , chosenPlayers
 }) => {
 
-  const [handNumber, setHandNumber] = useState(1)
-  const [] = useState<Player[]>();
+  const [handNumber, setHandNumber] = useState<number>(1)
+  const [inGamePlayers, setInGamePlayers] = useState<Player[]>(
+    chosenPlayers.map(
+      x => ({
+        name: x
+        , hands: []
+      })
+    )
+  );
 
   useEffect(
     () => setTitle("Play Blackjack and Collect Data")
@@ -30,20 +37,48 @@ export const Play: FC<PlayProps>  = ({
 
   const [startTimestamp, _] = useState(new Date().toISOString());
 
-  const gameOver = (winner: string) => {
-    addNewGameResult({
-      winner: winner
-      , players: chosenPlayers.map( x => ({
-          name: x
-          , hands: []
 
+  const gameOver = (player: string, handStatus: HandStatus) => {
+    setInGamePlayers((prevPlayers) => {
+    return prevPlayers.map((p) => {
+      if (p.name === player) {
+        return {
+          ...p,
+          hands: [...p.hands, { num: handNumber, status: handStatus }],
+        };
+      } else {
+        // Record a loss for the other player
+        return {
+          ...p,
+          hands: [...p.hands, { num: handNumber, status: 'Lost' }],
+        };
+      }
+    });
+  });
+}
+
+  const endGame = () => {
+    const gameResult: GameResult = {
+      players: inGamePlayers.map((player) => ({
+        name: player.name
+        , hands: [...player.hands]
       }))
-
       , start: startTimestamp
       , end: new Date().toISOString()
-    });
+    };
+
+    addNewGameResult(gameResult);
+
+
+  setInGamePlayers(
+    chosenPlayers.map((x) => ({
+      name: x,
+      hands: [],
+    }))
+  );
+
     navigate("/");
-  }
+  };
 
     return (
       <Box
@@ -60,58 +95,93 @@ export const Play: FC<PlayProps>  = ({
             , flexDirection: "row"
             , gap: 2
             , alignItems: "center"
+            , justifyContent: "center"
           }}
         >
-          <Button
-            variant='contained'
-            onClick={
-              () => setHandNumber(
-                handNumber > 1 
-                ? handNumber -1
-                : handNumber
-              )
-            }
-          >
-            <Remove />
-          </Button>
           <Typography
             fontSize={20}
           >
             Hand: {handNumber}
           </Typography>
-          <Button
-            variant='contained'
-            onClick={
-              () => setHandNumber(handNumber + 1)
-            }
-          >
-            <Add />
-          </Button>
         </Box>
+
+
+
       {
         chosenPlayers.map(x => (
-          <Button
-            key={x}
-            variant='outlined'
-            size='large'
-            startIcon={
-              <SmartDisplay />
-            }
-            onClick={
-              () => gameOver(x)    
-            }
-            sx={{
-              bgcolor: 'green'
-              , color: "white"
-              , p: 3
-              , width: '100%'
-            }}
+          <Box
+          key={x}
+          sx={{
+            display: 'flex'
+            , gap: 2
+            , marginBottom: 2
+          }}
           >
-            {x} won
-          </Button>
+            <Button
+              variant='outlined'
+              size='large'
+              startIcon={
+                <SmartDisplay />
+              }
+              /*onClick={
+                () => gameOver(x)    
+              }*/
+              onClick={
+                () => {
+                  setHandNumber(handNumber + 1);
+                  gameOver(x, 'Won');
+                }
+              }
+              sx={{
+                bgcolor: 'green'
+                , color: "white"
+                , p: 3
+                , width: '100%'
+              }}
+            >
+              {x} won
+            </Button>
+            <Button
+              variant='outlined'
+              size='large'
+              startIcon={
+                <SmartDisplay />
+              }
+              onClick={
+                () => {
+                  setHandNumber(handNumber + 1);
+                  gameOver(x, 'Blackjack');
+                }
+              }
+              /*onClick={
+                () => gameOver(x)    
+              }*/
+              sx={{
+                bgcolor: 'black'
+                , color: "white"
+                , p: 3
+                , width: '100%'
+              }}
+            >
+              {x} Got BlackJack!
+            </Button>
+          </Box>
         ))
       }
-        
+      <Button
+        variant='outlined'
+        size='large'
+        onClick={endGame}
+        sx={{
+          bgcolor: 'red' 
+          , color: "white"
+          , p: 3
+          , width: '100%'
+          , marginTop: 2 
+        }}
+      >
+        End Game and Record Hands
+      </Button>
       
       </Box>
     );

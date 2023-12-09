@@ -30,8 +30,8 @@ import  TableBarOutlined from '@mui/icons-material/TableBarOutlined'
 
 const dummyGameResults: GameResult[] = [
   {
-      winner: "Tom"
-      , players: [
+      
+      players: [
         {
           name: "Tom"
           , hands: [
@@ -52,8 +52,8 @@ const dummyGameResults: GameResult[] = [
       , end: "2023-10-01T17:53:27.123Z"
   }
   , {
-      winner: "Troy"
-      , players: [
+      
+      players: [
         {
           name: "Troy"
           , hands: [
@@ -73,8 +73,8 @@ const dummyGameResults: GameResult[] = [
       , end: "2023-10-09T18:00:27.123Z"
   }
   , {
-      winner: "Larry"
-      , players: [
+      
+      players: [
         {
           name: "Jonah"
           , hands: [
@@ -103,12 +103,7 @@ const App = () => {
   const [title, setTitle] = useState<string>(appTitle);
   const [chosenPlayers, setChosenPlayers] = useState<string[]>([]);
 
-  const addNewGameResult = (newGameResult: GameResult) => setGameResults(
-    [
-      ...gameResults
-      , newGameResult
-    ]
-  );
+  const addNewGameResult = (newGameResult: GameResult) => setGameResults((prevGameResults) => [...prevGameResults, newGameResult]);
 
   const router = createHashRouter([
     {
