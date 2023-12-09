@@ -33,7 +33,7 @@ export const Stats: FC<StatsProps> = ({
         >
           <Grid
             xs={12}
-            md={6}
+            md={12}
           >
             <Paper
               elevation={3}
@@ -99,7 +99,9 @@ export const Stats: FC<StatsProps> = ({
                     </TableCell>
                   </TableRow>
                 </TableHead>
-                <TableBody>
+                <TableBody
+                  sx={{width: "100%"}}
+                >
                   {
                     leaderboard.map(x => (
                       <TableRow
@@ -151,26 +153,62 @@ export const Stats: FC<StatsProps> = ({
         <Button
           variant='outlined'
           size='large'
+          color='inherit'
           startIcon={
             <SmartDisplay />
           }
+          sx={{
+            m: {
+              xs: 0
+              , md: 3
+            }
+            ,  bgcolor: '#f44336'
+            , p: 3
+            , color: 'white'
+            , width: {
+                xs: '100%'
+                , md: '45%'
+            }
+          }}
           onClick={
            () => navigate(-1)
           }
         >
-          Go Back
+          <Typography
+          fontSize={20}
+          >
+            Go Back
+          </Typography>
         </Button>
         <Button
           variant='outlined'
           size='large'
+          color='inherit'
           startIcon={
             <SmartDisplay />
           }
+          sx={{
+            m: {
+              xs: 0
+              , md: 3
+            }
+            ,  bgcolor: 'black'
+            , p: 3
+            , color: 'white'
+            , width: {
+                xs: '100%'
+                , md: '45%'
+            }
+          }}
           onClick={
            () => navigate("/Setup")
           }
         >
-          Start New Game
+          <Typography
+          fontSize={20}
+          >
+            Start New Game
+          </Typography>
         </Button>
       </>
     );
