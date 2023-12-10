@@ -163,7 +163,11 @@ export const Home: FC<HomeProps> = ({
                           color: 'white'
                         }}
                       >
-                        {generalGameFacts.lastPlayed} ago
+                        {
+                          generalGameFacts.totalGames > 0
+                            ? `${generalGameFacts.lastPlayed} ago`
+                            : ''
+                        }
                       </Typography>
                     </TableCell>
                   </TableRow>
@@ -185,7 +189,11 @@ export const Home: FC<HomeProps> = ({
                           color: 'white'
                         }}
                       >
-                        {generalGameFacts.longestGame}
+                        {
+                          generalGameFacts.totalGames > 0
+                            ? generalGameFacts.longestGame
+                            : ''
+                        }
                       </Typography>
                     </TableCell>
                   </TableRow>
@@ -208,7 +216,11 @@ export const Home: FC<HomeProps> = ({
                           color: 'white'
                         }}
                       >
-                        {generalGameFacts.shortestGame}
+                        {
+                          generalGameFacts.totalGames > 0
+                            ? generalGameFacts.shortestGame
+                            : ''
+                        }
                       </Typography>
                     </TableCell>
                   </TableRow>

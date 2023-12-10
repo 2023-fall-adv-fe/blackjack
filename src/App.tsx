@@ -28,78 +28,13 @@ import  TableBarOutlined from '@mui/icons-material/TableBarOutlined'
 
 
 
-const dummyGameResults: GameResult[] = [
-  {
-      
-      players: [
-        {
-          name: "Tom"
-          , hands: [
-            {num: 1, status: "Won"}
-            , {num: 2, status: "Blackjack"}
-          ]
-        }
-        , {
-          name: "Larry"
-          , hands: [
-            { num: 1, status: "Lost"}
-            , { num: 2, status: "Won"}
-          ]
-        }
-      ]
 
-      , start: "2023-10-01T17:40:46.333Z"
-      , end: "2023-10-01T17:53:27.123Z"
-  }
-  , {
-      
-      players: [
-        {
-          name: "Troy"
-          , hands: [
-            { num: 1, status: "Blackjack"}
-            , { num: 2, status: "Lost"}
-          ]
-        }
-        , {
-          name: "Larry"
-          , hands: [
-            { num: 1, status: "Lost"}
-            , { num: 2, status: "Won"}
-          ]
-        }
-      ]
-      , start: "2023-10-09T17:55:46.333Z"
-      , end: "2023-10-09T18:00:27.123Z"
-  }
-  , {
-      
-      players: [
-        {
-          name: "Jonah"
-          , hands: [
-            { num: 1, status: "Lost"}
-            , {num: 2, status: "Lost"}
-          ]
-        }
-        , {
-          name: "Larry"
-          , hands: [
-            { num: 1, status: "Won"}
-            , {num: 2, status: "Blackjack"}
-          ]
-        }
-      ]
-      , start: "2023-10-09T17:55:46.333Z"
-      , end: "2023-10-09T18:00:27.123Z"
-  }
-];
 
 
 const App = () => {
 
   const [num, setNum] = useState(1);
-  const [gameResults, setGameResults] = useState<GameResult[]>(dummyGameResults);
+  const [gameResults, setGameResults] = useState<GameResult[]>([]);
   const [title, setTitle] = useState<string>(appTitle);
   const [chosenPlayers, setChosenPlayers] = useState<string[]>([]);
 
