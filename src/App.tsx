@@ -21,8 +21,11 @@ import {
   , getLeaderboardData
   , getPreviousPlayers
 } from './blackjack-game-results';
-import { AppBar, Box, Toolbar, Typography } from '@mui/material';
+import { AppBar, Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Icon, IconButton, TextField, Toolbar, Typography, useMediaQuery, useTheme } from '@mui/material';
 import  TableBarOutlined from '@mui/icons-material/TableBarOutlined'
+import { SettingsOutlined } from '@mui/icons-material';
+
+import localForage from 'localforage';
 
 
 
@@ -37,6 +40,12 @@ const App = () => {
   const [gameResults, setGameResults] = useState<GameResult[]>([]);
   const [title, setTitle] = useState<string>(appTitle);
   const [chosenPlayers, setChosenPlayers] = useState<string[]>([]);
+
+  const [settingsOpen, setSettingsOpen] = React.useState(false);
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
+
+  const [emailAddress, setEmailAddress] = React.useState("");
 
   const addNewGameResult = (newGameResult: GameResult) => setGameResults((prevGameResults) => [...prevGameResults, newGameResult]);
 
@@ -112,10 +121,24 @@ const App = () => {
               sx={{
                 opacity: 0.75
                 , color: 'white'
+                , flexGrow: 1
+                , textAlign: 'left'
               }}
             >
               {title}
             </Typography>
+            <IconButton
+              size='small'
+              onClick={
+                () => setSettingsOpen(true)
+              }
+              sx={{
+                opacity: 0.75
+                , color: "white"
+              }}
+            >
+              <SettingsOutlined />
+            </IconButton>
           </Toolbar>
         </AppBar>
       </Box>
@@ -128,6 +151,52 @@ const App = () => {
       >
         <RouterProvider router={router} />
       </Box>
+
+
+
+      <Dialog
+        fullScreen={fullScreen}
+        open={settingsOpen}
+        onClose={
+          () => setSettingsOpen(false)
+        }
+      >
+        <DialogTitle>
+          Settings
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Your Email address will be used to save/load game results
+          </DialogContentText>
+
+          <TextField
+            label="Enter your email address"
+            variant='outlined'
+            fullWidth
+            value={emailAddress}
+            onChange={
+              (e) => setEmailAddress(e.target.value)
+            }
+            sx={{
+              mt: 3
+            }}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button
+            variant={emailAddress.length > 0 ? 'contained' : 'outlined'}
+            onClick={
+              async () => {
+                await localForage.setItem('email', emailAddress);
+                setSettingsOpen(false);
+              }
+            }
+            autoFocus
+          >
+            Save
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 }

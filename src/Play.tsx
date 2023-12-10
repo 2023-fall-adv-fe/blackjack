@@ -47,7 +47,6 @@ export const Play: FC<PlayProps>  = ({
           hands: [...p.hands, { num: handNumber, status: handStatus }],
         };
       } else {
-        // Record a loss for the other player
         return {
           ...p,
           hands: [...p.hands, { num: handNumber, status: 'Lost' }],
@@ -123,9 +122,6 @@ export const Play: FC<PlayProps>  = ({
               startIcon={
                 <SmartDisplay />
               }
-              /*onClick={
-                () => gameOver(x)    
-              }*/
               onClick={
                 () => {
                   setHandNumber(handNumber + 1);
@@ -153,9 +149,6 @@ export const Play: FC<PlayProps>  = ({
                   gameOver(x, 'Blackjack');
                 }
               }
-              /*onClick={
-                () => gameOver(x)    
-              }*/
               sx={{
                 bgcolor: 'black'
                 , color: "white"
