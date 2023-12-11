@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css'
 
@@ -46,6 +46,29 @@ const App = () => {
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
 
   const [emailAddress, setEmailAddress] = React.useState("");
+
+  useEffect(
+    () => {
+      const loadEmail = async () => {
+        if (!ignore) {
+        setEmailAddress(
+          await localForage.getItem<string>('email') ?? ""
+        )  
+        }
+      };
+
+      let ignore = false;
+      loadEmail();
+
+      return(
+        () => {
+          ignore = true;
+        }
+      );
+    }
+      , []
+
+  );
 
   const addNewGameResult = (newGameResult: GameResult) => setGameResults((prevGameResults) => [...prevGameResults, newGameResult]);
 
