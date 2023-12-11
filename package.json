@@ -1,6 +1,7 @@
 {
   "name": "blackjack",
   "version": "0.1.0",
+  "homepage": "https://2023-fall-adv-fe.github.io/blackjack",
   "private": true,
   "dependencies": {
     "@aws-sdk/util-dynamodb": "^3.470.0",
