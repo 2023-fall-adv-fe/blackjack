@@ -26,6 +26,7 @@ import  TableBarOutlined from '@mui/icons-material/TableBarOutlined'
 import { SettingsOutlined } from '@mui/icons-material';
 
 import localForage from 'localforage';
+import { loadGamesFromCloud, saveGameToCloud } from './tca-cloud-api';
 
 
 
@@ -46,19 +47,30 @@ const App = () => {
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
 
   const [emailAddress, setEmailAddress] = React.useState("");
+  const [emailAddressUpdatedCount, setEmailAddressUpdatedCount] = React.useState(0);
 
   useEffect(
     () => {
-      const loadEmail = async () => {
+      const init = async () => {
         if (!ignore) {
-        setEmailAddress(
-          await localForage.getItem<string>('email') ?? ""
-        )  
+
+          const email = await localForage.getItem<string>('email') ?? "";
+
+          if (email.length > 0) {
+            setEmailAddress(email);
+
+            const cloudGameResults = await loadGamesFromCloud(
+              email
+              , 'tca-blackjack-fall-2023'
+            );
+
+            setGameResults(cloudGameResults);
+          }
         }
       };
 
       let ignore = false;
-      loadEmail();
+      init();
 
       return(
         () => {
@@ -66,11 +78,29 @@ const App = () => {
         }
       );
     }
-      , []
+      , [emailAddressUpdatedCount]
 
   );
 
-  const addNewGameResult = (newGameResult: GameResult) => setGameResults((prevGameResults) => [...prevGameResults, newGameResult]);
+
+
+  const addNewGameResult = async (newGameResult: GameResult) => {
+
+    if (emailAddress.length > 0) {
+      await saveGameToCloud(
+        emailAddress
+        , 'tca-blackjack-fall-2023'
+        , newGameResult.end
+        , newGameResult
+      );
+    }
+    setGameResults((prevGameResults) => 
+      [
+        ...prevGameResults
+        , newGameResult
+      ]
+    );
+  }
 
   const router = createHashRouter([
     {
@@ -211,6 +241,7 @@ const App = () => {
             onClick={
               async () => {
                 await localForage.setItem('email', emailAddress);
+                setEmailAddressUpdatedCount(emailAddressUpdatedCount + 1);
                 setSettingsOpen(false);
               }
             }
