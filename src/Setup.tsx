@@ -90,8 +90,9 @@ export const Setup: FC<SetupProps> = ({
         </Alert>
       </Snackbar>
       <Button
-          variant='outlined'
+          variant='contained'
           size='large'
+          color='secondary'
           startIcon={
             <SmartDisplay />
           }
@@ -99,9 +100,7 @@ export const Setup: FC<SetupProps> = ({
            () => navigate(-1)
           }
           sx={{
-            bgcolor: '#f44336'
-            , color: "white"
-            , p: 3
+            p: 3
             , width: {
                 xs: '100%'
                 , md: '45%'
@@ -119,14 +118,14 @@ export const Setup: FC<SetupProps> = ({
           </Typography>
         </Button>
         <Button
-          variant='outlined'
+          variant='contained'
+          color='primary'
           size='large'
           startIcon={
             <SmartDisplay />
           }
           sx={{
-            bgcolor: "black"
-            , color: "white"
+            color: "white"
             , p: 3
             , width: {
                 xs: '100%'
@@ -182,10 +181,8 @@ export const Setup: FC<SetupProps> = ({
           />
           <Button
             variant={newPlayerName.length == 0 ? "outlined" : 'contained'}
-            sx={{
-              bgcolor: "black"
-              , color: "white"
-            }}
+            color='primary'
+
             onClick={
               validateAndAddNewPlayer
             }

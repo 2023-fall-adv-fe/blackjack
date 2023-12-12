@@ -151,9 +151,9 @@ export const Stats: FC<StatsProps> = ({
           </Grid>
         </Grid>
         <Button
-          variant='outlined'
+          variant='contained'
           size='large'
-          color='inherit'
+          color='secondary'
           startIcon={
             <SmartDisplay />
           }
@@ -162,7 +162,6 @@ export const Stats: FC<StatsProps> = ({
               xs: 0
               , md: 3
             }
-            ,  bgcolor: '#f44336'
             , p: 3
             , color: 'white'
             , width: {
@@ -181,9 +180,9 @@ export const Stats: FC<StatsProps> = ({
           </Typography>
         </Button>
         <Button
-          variant='outlined'
+          variant='contained'
           size='large'
-          color='inherit'
+          color='primary'
           startIcon={
             <SmartDisplay />
           }
@@ -192,7 +191,6 @@ export const Stats: FC<StatsProps> = ({
               xs: 0
               , md: 3
             }
-            ,  bgcolor: 'black'
             , p: 3
             , color: 'white'
             , width: {

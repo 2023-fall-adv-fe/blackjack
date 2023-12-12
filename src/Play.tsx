@@ -117,8 +117,9 @@ export const Play: FC<PlayProps>  = ({
           }}
           >
             <Button
-              variant='outlined'
+              variant='contained'
               size='large'
+              color='success'
               startIcon={
                 <SmartDisplay />
               }
@@ -129,8 +130,7 @@ export const Play: FC<PlayProps>  = ({
                 }
               }
               sx={{
-                bgcolor: 'green'
-                , color: "white"
+                color: "white"
                 , p: 3
                 , width: '100%'
               }}
@@ -138,7 +138,8 @@ export const Play: FC<PlayProps>  = ({
               {x} won
             </Button>
             <Button
-              variant='outlined'
+              variant='contained'
+              color='primary'
               size='large'
               startIcon={
                 <SmartDisplay />
@@ -150,8 +151,7 @@ export const Play: FC<PlayProps>  = ({
                 }
               }
               sx={{
-                bgcolor: 'black'
-                , color: "white"
+                color: "white"
                 , p: 3
                 , width: '100%'
               }}
@@ -162,13 +162,12 @@ export const Play: FC<PlayProps>  = ({
         ))
       }
       <Button
-        variant='outlined'
+        variant='contained'
+        color='secondary'
         size='large'
         onClick={endGame}
         sx={{
-          bgcolor: 'red' 
-          , color: "white"
-          , p: 3
+          p: 3
           , width: '100%'
           , marginTop: 2 
         }}

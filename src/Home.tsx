@@ -32,7 +32,7 @@ export const Home: FC<HomeProps> = ({
         <Button
           variant='contained'
           size='large'
-          color='inherit'
+          color="primary"
           startIcon={
             <SmartDisplay />
           }
@@ -41,7 +41,6 @@ export const Home: FC<HomeProps> = ({
               xs: 0
               , md: 3
             }
-            ,  bgcolor: 'black'
             , p: 3
             , color: 'white'
             , width: {
@@ -65,7 +64,7 @@ export const Home: FC<HomeProps> = ({
         <Button
           variant='contained'
           size='large'
-          color='inherit'
+          color='secondary'
           startIcon={
             <SmartDisplay />
           }
@@ -75,7 +74,6 @@ export const Home: FC<HomeProps> = ({
               , md: 3
             }
             , p: 3
-            , bgcolor: '#f44336'
             , color: 'white'
             , width: {
               xs: '100%'
